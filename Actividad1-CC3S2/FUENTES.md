@@ -1,3 +1,11 @@
-1.Ruf, Philipp & Madan, Manav & Reich, Christoph & Ould Abdeslam, Djaffar. (2021). Demystifying MLOps and Presenting a Recipe for the Selection of Open-Source Tools. Applied Sciences. 11. 39. 10.3390/app11198861.
-2.**GeeksforGeeks.** "Waterfall Model". *geeksforgeeks.org*. Disponible en: [https://www.geeksforgeeks.org/software-engineering/waterfall-model/](https://www.geeksforgeeks.org/ oftware-engineering/waterfall-model/) (Consultado el 4 de septiembre de 2025).
-Dave Silberman, Rob E. Carpenter, Elena Cabrera, Jasmine Kernaleguen, Organizational silofication: implications in grouping experts for organizational performance, Development and Learning in Organizations: An International Journal, Volume 36, Issue 6, 2022, Pages 15-18, ISSN 1477-7282, https://doi.org/10.1108/DLO-10-2021-0193.(https://www.sciencedirect.com/science/article/pii/S1477728222000831).
+1. Ruf, Philipp & Madan, Manav & Reich, Christoph & Ould Abdeslam, Djaffar. (2021). Demystifying MLOps and Presenting a Recipe for the Selection of Open-Source Tools. Applied Sciences. 11. 39. 10.3390/app11198861.
+
+2. **GeeksforGeeks.** "Waterfall Model". *geeksforgeeks.org*. Disponible en: [https://www.geeksforgeeks.org/software-engineering/waterfall-model/](https://www.geeksforgeeks.org/ oftware-engineering/waterfall-model/) (Consultado el 4 de septiembre de 2025).
+
+3. Dave Silberman, Rob E. Carpenter, Elena Cabrera, Jasmine Kernaleguen, Organizational silofication: implications in grouping experts for organizational performance, Development and Learning in Organizations: An International Journal, Volume 36, Issue 6, 2022, Pages 15-18, ISSN 1477-7282, https://doi.org/10.1108/DLO-10-2021-0193.(https://www.sciencedirect.com/science/article/pii/S1477728222000831).
+
+4. **kapumota.** "Curso-CC3S2: Actividad1-CC3S2.md". *GitHub*. Disponible en: [https://github.com/kapumota/Curso-CC3S2/blob/main/actividades/Actividad1-CC3S2.md](https://github.com/kapumota/Curso-CC3S2/blob/main/actividades/Actividad1-CC3S2.md) (Consultado el 4 de septiembre de 2025).
+
+5. **Eilam, Eldad.** "Blue-Green Deployment vs. Canary Deployment: What’s the Difference?". *spectralops.io blog*. Disponible en: [https://spectralops.io/blog/blue-green-deployment-vs-canary/](https://spectralops.io/blog/blue-green-deployment-vs-canary/) (Consultado el 4 de septiembre de 2025).
+
+6. 
