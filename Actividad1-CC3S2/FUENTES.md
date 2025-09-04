@@ -1,0 +1,2 @@
+1.Ruf, Philipp & Madan, Manav & Reich, Christoph & Ould Abdeslam, Djaffar. (2021). Demystifying MLOps and Presenting a Recipe for the Selection of Open-Source Tools. Applied Sciences. 11. 39. 10.3390/app11198861.  (Fuente de la imagen "devops-vs-cascada.png" utilizada en la sección 4.1).
+2.**GeeksforGeeks.** "Waterfall Model". *geeksforgeeks.org*. Disponible en: [https://www.geeksforgeeks.org/software-engineering/waterfall-model/](https://www.geeksforgeeks.org/ oftware-engineering/waterfall-model/) (Consultado el 4 de septiembre de 2025).
