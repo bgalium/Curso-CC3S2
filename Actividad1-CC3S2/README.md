@@ -159,7 +159,7 @@ Esto puede ocurrir si es que la neuva versión introduce un cambio de diseño qu
 
 **HTTP - contrato observable**
 
-![HTTP Capture](http-evidencia.png)
+![HTTP Capture](imagenes/http-evidencia.png)
 
 Para la captura, el método HTTP es GET, el status 200, y las cabeceras escogidas son cache-control y content-type:
 
@@ -169,7 +169,7 @@ content-type: text/html; charset=UTF-8: Le informa al navegador que esto es una 
 
 **DNS - nombres y TTL**
 
-![DNS Capture](dns-ttl.png)
+![DNS Capture](imagenes/dns-ttl.png)
 
 En la captura se hace una consulta DNS para el dominio google.com utilizando la herramienta nslookup en modo debug para obtener la información detallada. Se observa que la consulta devolvió un registro de tipo A, este registro asocia el nombre de un dominio a una direccion IPv4, los datos encontrados fueron:
 
@@ -185,7 +185,7 @@ El TTL es una instrucción que le dice a los servidores y SO cuanto tiempo deben
 
 **TLS - seguridad en tránsito**
 
-![TLS Capture](tls-cert.png)
+![TLS Capture](imagenes/tls-cert.png)
 
 Se inspeccionó el certificado de seguridad del dominio github.com y en la captura se muestra: CN/SAN(Common Name/Subject Alternative Name): El certificado es válido para los dominos github.com y www.github.com, Emisora es Sectigo ECC Domain Validation Secure Server CA que es la Autoridad de Certificación (CA) que verificó la identidad del sitio y firmó el certificado. y la vigencia desde el 5 de febrero de 2025 hasta el 5 de febrero del 2026.
 
@@ -193,7 +193,7 @@ Si la cadena de un certificado no se valida, el navegador no puede confiar en la
 
 **Puertos - estado de runtime**
 
-![Puertos](puertos.png)
+![Puertos](imagenes/puertos.png)
 
 Se utilizó el comando netstat -ano | findstre LISTENING para inspeccionar los puertos en estado de escucha en el sistema.
 
