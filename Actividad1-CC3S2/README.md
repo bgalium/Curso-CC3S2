@@ -144,7 +144,7 @@ Para un microservicio como el propuesto, sería más conveniente usar el canary 
 **KPI Primario para Promoción/Abortado:**
 Para decidir si el despliegue canario es exitoso, se establece un gate automático basado en el siguiente KPI, umbral y ventana de observación:
 
-* **KPI:** Tasa de errores del servidor (`HTTP 5xx`).
+* **KPI:** Tasa de errores del servidor (HTTP 5xx).
 * **Umbral:** No debe superar el 0.1% sobre el tráfico dirigido al canario.
 * **Ventana de Observación:** Durante la primera hora después de iniciar el despliegue.
 * **Decisión:** Si el KPI se mantiene por debajo del umbral durante toda la ventana de observación, el despliegue se promueve gradualmente al 100% de los usuarios. Si en algún momento el umbral se supera, se activa un rollback automático que revierte la nueva versión de forma inmediata.
@@ -157,4 +157,111 @@ Esto puede ocurrir si es que la neuva versión introduce un cambio de diseño qu
 
 ### 4.6 Fundamentos Prácticos Sin Comandos
 
+**HTTP - contrato observable**
 
+![HTTP Capture](http-evidencia.png)
+
+Para la captura, el método HTTP es GET, el status 200, y las cabeceras escogidas son cache-control y content-type:
+
+cache-control: private ,max-age=0: el private le indica al navegador que el response contiene la información para un solo ussuario y no debe ser almacenado en una caché compartida, y el max-age =0 establece la edad maxima del recurso en cero es decir, el anvegador recibió un contenido y este ya es obsoleto apenas llega. Basicamente esta cabecera le dice al navegador que puede guardar una copia de este archivo durante un tiempo, en este caso 0 segundos.
+
+content-type: text/html; charset=UTF-8: Le informa al navegador que esto es una página (HTML), usa el diccionario uuniversal UTF-8, para que sepa como interpretarlo y mostrarlo.
+
+**DNS - nombres y TTL**
+
+![DNS Capture](dns-ttl.png)
+
+En la captura se hace una consulta DNS para el dominio google.com utilizando la herramienta nslookup en modo debug para obtener la información detallada. Se observa que la consulta devolvió un registro de tipo A, este registro asocia el nombre de un dominio a una direccion IPv4, los datos encontrados fueron:
+
+*Dominio: google.com
+
+*Tipo de registro: A
+
+*Dirección IP: 142.251.132.174
+
+*TTL: 158 segundos
+
+El TTL es una instrucción que le dice a los servidores y SO cuanto tiempo deben almacenar en caché una copia de este registro antes de volver a preguntar. Un TTL bajo permite que los cambios en la infraestructura de  Google se propaguen en internet muy rápido, además si un despliegue sale mal y necesita un rollabck (revertir a una configuración anterior) este TTL bajo asegura que la corrección se aplique casi de inmediato.
+
+**TLS - seguridad en tránsito**
+
+![TLS Capture](tls-cert.png)
+
+Se inspeccionó el certificado de seguridad del dominio github.com y en la captura se muestra: CN/SAN(Common Name/Subject Alternative Name): El certificado es válido para los dominos github.com y www.github.com, Emisora es Sectigo ECC Domain Validation Secure Server CA que es la Autoridad de Certificación (CA) que verificó la identidad del sitio y firmó el certificado. y la vigencia desde el 5 de febrero de 2025 hasta el 5 de febrero del 2026.
+
+Si la cadena de un certificado no se valida, el navegador no puede confiar en la identidad del sevidor al que se conecta, lo que conlleva a una serie de problemas críticos de seguridad.
+
+**Puertos - estado de runtime**
+
+![Puertos](puertos.png)
+
+Se utilizó el comando netstat -ano | findstre LISTENING para inspeccionar los puertos en estado de escucha en el sistema.
+
+El puerto 445 en 0.0.0.0, significa que el servicio esta aceptando conexiones desde cualqueir interfaz de rede del equipo.
+
+El puerto 9009 en 127.0.0.1, significa que el servicio solo acepta conexiones originadas desde la propia máquina.
+
+La revisión de puertos en estado LISTENING permite verficiar el estado de las aplicaciones y solucionar problemas, por ejemplo si se despliega una aplicación que debería estar disponibnle en un puerto específico, pero no aparece en la lista es una clara señal de que la apliación fallo al iniciarse o no pudo vincularse al puerto, otro error muy comun es el de "Adress already in use", esto indica que otro proceso está ocupadno el puerto deseado.
+
+
+**12-Factor - port binding, configuración logs**
+
+Para parametrizar el puerto de la aplicación, se utilizan variables de entorno. "Las variables de entorno se modifican fácilmente entre despliegues sin realizar cambios en el código"[6].
+
+Los logs en ejecución se deben ver como un flujo de eventos dirigidos a la salida estándar y al error estándar. No se deben escribir en archivos locales porque esta práctica no escala en entornos distribuidos [7].
+
+Un antipatrón clásico es incrustar credenciales o configuraciones en el código como URL de una base de datos de desarrollo, esto destruye la reproducibilidad porque el mismo artefacto no puede ser desplegado en diferentes entornos (desarrollo, producción) sin modificar el código, cada entorno requerirá un cambio y un nuevo build invalidando el principio de codebase[7,8].
+
+**Checklist de diagnóstico**
+
+Escenario: usuarios reportan intermitencia.
+
+a) Paso 1: contrato HTTP roto
+
+Objetivo: Verficiar si el cliente puede comunicarse correctamente con el servidor y recibe respuesta válida.
+
+Evidencia: Usar la herramienta de desarrollador del navegador para inspeccionar la pestaña "Red". Se busca código de estado 200 OK.
+
+Interpretación:
+
+Si el código es 200 OK, el contrato HTTP básico funciona, Pasar al Paso 2.
+
+Si el código es 4xx o 5xx el contrato HTTP está roto. *Acción:* Escalar al equipo de desarrollo.
+
+b) Paso 2: resolcuión DNS inconsistente
+
+Objetivo: Confirmar que el dominio resuelve a la dirección IP correcta desde diferentes ubicaciones.
+
+Evidencia: Usar una herramienta online o comando de Sistema Operativo para consultar el registro A del dominio. Se busca que la mayoría de los servidores a nivel mundial reporten la misma dirección IP.
+
+Interpretación:
+
+Si la IP es consistente, el DNS está funcionando correctamente. Acción: Pasar al paso 3.
+
+Si se observan IPs diferentes o errores de resolución, el DNS es inconsistente. Acción: Revisar la configuración DNS y el TTL; esperar a que se propague el cambio correcto.
+
+c) Paso3: Certificado TLS caducado/incorrecto
+
+Objetivo: Asegurar que el certificado de seguridad del sitio sea válido y de confianza.
+
+Evidencia: Hacer clic en el candado del navegador para ver los detalles del certificado. Se busca que las fechas de "Válido desde/hasta" estén vigentes y que el nombre del dominio (CN/SAN) coincida.
+
+Interpretación:
+
+Si el certificado es válido, la capa TLS es correcta. Acción: Pasar al paso 4.
+
+Si el certificado está caducado o el nombre no coincide, esta es la causa del error. Acción: Renovar o reinstalar el certificado TLS inmediatamente.
+
+d) Paso 4: puerto mal configurado/no expuesto.
+
+Objetivo: Confirmar si el servicio está escuchando en el puerto esperado desde la propia máquina del servidor.
+
+Evidencia: En la terminal del servidor, ejecutar curl localhost:<PUERTO>. Se espera recibir una respuesta HTML o JSON, no un error de "conexión rechazada".
+
+Interpretación:
+
+Si se obtiene una respuesta, el servicio está corriendo correctamente a nivel local. 
+
+Si la conexión es rechazada, el puerto no está expuesto o el proceso de la aplicación no se inició. Acción: Revisar el código de la aplicación y la configuración de arranque.
+
+---
