@@ -2,7 +2,7 @@
 
 - **Nombre** Walter Bryan Poma Navarro
 - **Fecha** 2025-09-03
-- **Tiempo Invertido** 3 horas 
+- **Tiempo Invertido** 11 horas 
 
 ---
 
@@ -265,3 +265,58 @@ Si se obtiene una respuesta, el servicio está corriendo correctamente a nivel l
 Si la conexión es rechazada, el puerto no está expuesto o el proceso de la aplicación no se inició. Acción: Revisar el código de la aplicación y la configuración de arranque.
 
 ---
+
+### 4.7 Desafíos de DevOps y mitigaciones
+
+![desafios DevOps](imagenes/desafios_devops.png)
+
+En el despliegue de software existen distintos riesgos, por ejemplo:
+
+1. Riesgo: Un despliegue introduce un error crítico quie afecta a todos los usuarios.
+
+    Mitigación: Si se detecta un error grave , el sistema se revierte inmediatamente a la versión anterior que funcionaba correctamente, minimizando el tiempo de inactividad y el impacto en los usuarios.
+
+2. Riesgo: Una nueva funcionalidad causa un problema de rendimiento o compatibilidad con una pequeña fracción de la base de usuarios, pero el errror no se detecta de inmediato.
+
+    Mitigación: Se mitiga con despliegues graduales, en lugar de lanzar la nueva versión a todos los usuarios a la vez se despliega de forma escalonada, esto permite detectar y corregir problemas en una población más pequeña.
+
+3. Riesgo: Un cambio en una parte del sistema provoca una falla inesperada en otra parte no relacionada.
+
+    Mitigación: Se diseñan los sistemas para que un fallo en un componente no afecte a otro, como microservicios o arquitecturas sin acoplamientopara aislar funcionalidades.
+
+**Diseño de experimento controlado para despliegues graduales**
+
+El objetivo es demostrar que un despliegue graudal tiene un impacto menor en el usuario y en la estabildad del sistema que un desplieguie total (big-bang).
+
+La métrica primaria sería la tasa de errores por minuto, ya que mide el impacto del despliegue en la calidad del servicio.
+
+Grupo de Control (A): La nueva versión se lanza al 100% de los usuarios de una sola vez.
+
+Grupo Experimental (B): La nueva versión se lanza en un 5% de los usuarios. Si la tasa de errores no aumenta, se incrementa gradualmente por ejemplo a 25%, 50% y finalmente al 100%.
+
+Criterio de Exito: SE considerará exitoso el experimento si el Grupo B no supera un umbral predefinido, mientras que la tasa de errores del Grupo A si lo supere en un mismo tiempo después de su lanzamiento.
+
+Plan de reversión: Para amvos gruppos si se excede el umbral de seguridad se activará un roll back inmediato a la versión funcional anterior.
+
+---
+### 4.8 Arquitectura mínima para DevSecOps (HTTP/DNS/TLS + 12-Factor)
+
+![Arquitectura Mínima DevSecOps](imagenes/arquitectura-minima.png)
+
+Cada capa tiene un rol específico para hacer los despliegues más seguros y reproducibles:
+
+Cliente y DNS: El Cliente inicia la conexión y el DNS evita que el tráfico vaya a sitios maliciosos, al ser un registro fijo, garantiza que siempre se llegue al lugar correcto(reproducibilidad).
+
+TLS: En esta capa se aplican contratos API  y rate limits, se encripta toda la comunicación entre el cliente y el servidor, protegiendo la información, también verifica la identidad del servidor para evitar fraudes.
+
+Servicio (HTTP): En esta capa se aplican reglas del negocio, los contratos de API  y rate limits protegen al servicio de ataques y aseguran que solo se reciban datos válidos, y la reproducibilidad se logra ya que el código de servicio n o cambia lo que garantiza que se comporta igual en todos los entornos.
+
+**Principios 12-Factor en la Práctica**
+
+**config por entorno**
+
+La configuración debe estar separada en el código, lo que permite que el mismo código se use en diferentes entornos. La evidencia sería que el docente puede pedir los diffs mínimos en el repositorio de código como git. La prueba que el principio se ha aplica correctamente es que las únicas diferencias entre el código de desarrollo y el de producción son los archivos de configuración, no el código de la aplicación en sí.
+
+**logs a stdout**
+
+La aplicación debe enviar sus logs a la consola, sin escribirlos en los archilos locales. Esto permite que un sistema centralizado recoja todos los logs. La evidencia seríal a trazabilidad de los logs a traves de cualqueir herramienta. La prueba es que al realizar una acción en la aplicación se puede seguir la secuencia completa de eventos a través de logs, sin importar cuantos servicios o contenedores haya pasado.
