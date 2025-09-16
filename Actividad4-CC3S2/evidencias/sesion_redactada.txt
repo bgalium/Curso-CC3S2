@@ -1,0 +1,165 @@
+Script started on 2025-09-16 13:43:12-05:00 [TERM="xterm-256color" TTY="/dev/pts/8" COLUMNS="120" LINES="30"]
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ cd /etc && ls -a > ~/etc_lista.txt
+[?2004l[?2004h]0;walter@Galium-PC: /etcwalter@Galium-PC:/etc$ cd ~/DesarrolloSoftware//Curso-CC3S2/Curso-CC3S2/Actividad4-CC3S2/
+[?2004l[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ head ~/etc_lista.txt 
+[?2004l.
+..
+.pwd.lock
+.resolv.conf.systemd-resolved.bak
+.updated
+PackageKit
+X11
+adduser.conf
+alternatives
+apache2
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ touch /tmp/demo1.txt /tmp/demo2.txtdoctxt /tmp/demo3.doc
+[?2004l[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ find /tmp -maxdepth 1 -type f\( -name '*.txt?0' -o -na me '*doc.doc' \)
+[?2004lfind: Must separate multiple arguments to -type using: ','
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ find /tmp -maxdepth 1 -type f\( -name '*.txt' -o -name '*.doc' \) | wc -1
+[?2004lfind: Must separate multiple arguments to -type using: ','
+wc: invalid option -- '1'
+Try 'wc --help' for more information.
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ find /tmp -maxdepth 1 -type f\( -name '*.txt' -o -name '*.doc' \) | wc -1 \( -name '*.txt' -o -na[1@m]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ 
+
+
+[?2004lwc: invalid option -- '1'
+Try 'wc --help' for more information.
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ ]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ find /tmp -maxdepth 1 -type f \( -name '*.txt' -o -name '*.doc' \) | wc -1l
+[?2004l4
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ ]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ ]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ printf "ÑLinea1\nLinea12\nLinea3n" > test.txt
+[?2004l[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ cat test.txt
+[?2004lLinea1
+Linea2
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ ]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ ]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ echo "___--SECCION 2__---""
+[?2004l--SECCION 2--
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ ]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ ]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ sudo adduser devsecsudo adduser devsec
+[?2004l[sudo] [REDACTED] for walter: 
+info: Adding user `devsec' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `devsec' (1001) ...
+info: Adding new user `devsec' (1001) with group `devsec (1001)' ...
+info: Creating home directory `/home/devsec' ...
+info: Copying files from `/etc/skel' ...
+New [REDACTED]: 
+Retype new [REDACTED]: 
+No [REDACTED] has been supplied.
+New [REDACTED]: 
+Retype new [REDACTED]: 
+No [REDACTED] has been supplied.
+New [REDACTED]: 
+Retype new [REDACTED]: 
+passwd: [REDACTED] updated successfully
+Changing the user information for devsec
+Enter the new value, or press ENTER for the default
+	Full Name []: 
+	Room Number []: 
+	Work Phone []: 
+	Home Phone []: 
+	Other []: 
+Is the information correct? [Y/n] Y
+info: Adding new user `devsec' to supplemental / extra groups `users' ...
+info: Adding user `devsec' to group `users' ...
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ sudo addgroup opssudo addgroup ops
+[?2004linfo: Selecting GID from range 1000 to 59999 ...
+info: Adding group `ops' (GID 1002) ...
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ sudo usermode -aG ops devsec
+[?2004lsudo: usermode: command not found
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ sudo usermode -aG ops devsec
+[?2004l[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ touch [REDACTED]o.txt
+[?2004l[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ sudop chown devsec:ops [REDACTED]o.txt 
+[?2004l[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ sudo chmod 640 [REDACTED]o.txtsudo chmod 640 [REDACTED]o.txt
+[?2004l[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ ls -l [REDACTED]o.txtls -l [REDACTED]o.txt
+[?2004l-rw-r----- 1 devsec ops 0 Sep 16 14:02 [REDACTED]o.txt
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ id devsec
+[?2004luid=1001(devsec) gid=1001(devsec) groups=1001(devsec),100(users),1002(ops)
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ ps aux | grep bashps aux | grep bash
+[?2004lwalter       386  0.0  0.0   6072  5128 pts/1    S+   01:39   0:00 -bash
+walter     28264  0.0  0.0   7288  6532 pts/4    Ss+  04:16   0:00 -bash
+walter     59713  0.0  0.0   6204  5444 pts/5    Ss+  07:06   0:00 -bash
+walter     93697  0.0  0.0   6204  5416 pts/0    Ss+  11:36   0:00 -bash
+walter    105292  0.0  0.0   7428  6488 pts/7    Ss+  12:40   0:00 /bin/bash --init-file /home/walter/.vscode-server/bin/f220831ea2d946c0dcb0f3eaa480eb435a2c1260/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+walter    116868  0.0  0.0   6204  5500 pts/8    Ss   13:32   0:00 -bash
+walter    118634  0.0  0.0   6212  5460 pts/9    Ss   13:42   0:00 bash -i
+walter    122576  0.0  0.0   4088  1936 pts/9    S+   14:04   0:00 grep --color=auto bash
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ systemctl status systemd-logind
+[?2004l[?1h=● systemd-logind.service - User Login Management
+     Loaded: loaded (]8;;file://Galium-PC/usr/lib/systemd/system/systemd-logind.service/usr/lib/systemd/system/systemd-logind.service]8;;; static)
+    Drop-In: /usr/lib/systemd/system/systemd-logind.service.d
+             └─]8;;file://Galium-PC/usr/lib/systemd/system/systemd-logind.service.d/dbus.confdbus.conf]8;;
+     Active: active (running) since Sun 2025-09-14 20:59:09 -05; 1 day 17h ago
+       Docs: ]8;;man:sd-login(3)man:sd-login(3)]8;;
+             ]8;;man:systemd-logind.service(8)man:systemd-logind.service(8)]8;;
+             ]8;;man:logind.conf(5)man:logind.conf(5)]8;;
+             ]8;;man:org.freedesktop.login1(5)man:org.freedesktop.login1(5)]8;;
+   Main PID: 167 (systemd-logind)
+     Status: "Processing requests..."
+      Tasks: 1 (limit: 19094)
+   FD Store: 0 (limit: 512)
+     Memory: 1.6M ()
+     CGroup: /system.slice/systemd-logind.service
+             └─167 /usr/lib/systemd/systemd-logind
+
+Sep 14 20:59:09 Galium-PC systemd[1]: Starting systemd-logind.service - User Login Management...
+Sep 14 20:59:09 Galium-PC systemd-logind[167]: New seat seat0.
+Sep 14 20:59:09 Galium-PC systemd[1]: Started systemd-logind.service - User Login Management.
+Sep 14 20:59:11 Galium-PC systemd-logind[167]: New session 1 of user walter.
+[?1l>[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ journalctl -u systemd-logind -n 10
+[?2004l[?1h=Sep 13 09:08:49 Galium-PC systemd[1]: Started systemd-logind.service - User Login Management.
+Sep 13 09:08:51 Galium-PC systemd-logind[186]: New session 1 of user walter.
+-- Boot 772433a1760e4c88bcb3d342286aaacc --
+Sep 14 19:01:34 Galium-PC systemd[1]: Starting systemd-logind.service - User Login Management...
+Sep 14 19:01:34 Galium-PC systemd-logind[186]: New seat seat0.
+Sep 14 19:01:34 Galium-PC systemd[1]: Started systemd-logind.service - User Login Management.
+Sep 14 19:01:36 Galium-PC systemd-logind[186]: New session 1 of user walter.
+-- Boot 0700950328f147a39a77144e1bdd26c6 --
+Sep 14 20:59:09 Galium-PC systemd[1]: Starting systemd-logind.service - User Login Management...
+Sep 14 20:59:09 Galium-PC systemd-logind[167]: New seat seat0.
+Sep 14 20:59:09 Galium-PC systemd[1]: Started systemd-logind.service - User Login Management.
+Sep 14 20:59:11 Galium-PC systemd-logind[167]: New session 1 of user walter.
+[?1l>[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ echo "--- INICIO SECCION 3 ---"echo "--- INICIO SECCION 3 ---"""-"-"[1@s[1@S
+[?2004l--SECCION 3--
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ greep ep root /etc/passwd
+[?2004lroot:x:0:0:root:/root:/bin/bash
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ printf "Linea1: dato1\nLinea2:dato\n" > datd datos.txct
+[?2004l[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ sed 's/dato1/[REDACTED]o' datos.txt >nuevo.txt nuevo.txt
+[?2004lsed: -e expression #1, char 15: unterminated `s' command
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ sed 's/dato1/[REDACTED]o' datos.txt > nuevo.txt[1@/
+[?2004l[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ cat nuevo.txt
+[?2004lLinea1: [REDACTED]o
+Linea2:dato
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ awk -F : '{print $q1}' /etc/passwd |so sort |uniq
+[?2004l_apt
+backup
+bin
+daemon
+devsec
+dhcpcd
+games
+irc
+landscape
+list
+lp
+mail
+man
+messagebus
+news
+nobody
+polkitd
+proxy
+root
+sync
+sys
+syslog
+systemd-network
+systemd-resolve
+systemd-timesync
+uucp
+uuidd
+walter
+www-data
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ printf "holas\n" | tr 'a-z' 'A-zZ' | tee mayus.txt
+[?2004lHOLA
+[?2004h]0;walter@Galium-PC: ~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2walter@Galium-PC:~/DesarrolloSoftware/Curso-CC3S2/Actividad4-CC3S2$ exirtrt
+[?2004lexit
+
+Script done on 2025-09-16 14:13:07-05:00 [COMMAND_EXIT_CODE="0"]
