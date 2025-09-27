@@ -1,0 +1,4 @@
+shellcheck scripts/run_tests.sh
+shfmt -d scripts/run_tests.sh
+--- scripts/run_tests.sh.orig
++++ scripts/run_tests.sh

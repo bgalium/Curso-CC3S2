@@ -43,5 +43,51 @@ Make exige TAB al inicio de las líneas de una receta como una regla de sintaxis
 
 La forma más rápida de diagnosticarlo es prestando atención al mensaje de error *** missing separator, que indica el archivo y el número de línea exactos del problema, y en un editor de codigo se debería activar la opción par "mostrar caracteres de espacio en balnco" esto mostrará si la linea comienza con espacios en lugar de una flecha.
 
+---
 
+## Parte 2 LEER
 
+### Análisis con make -n y make -d
+
+La ejecución de make -n all me permitió observar la secuencia completa de comandos que se ejecutarían (tools, lint, build, test, package) sin ejecutarlos, mostrando la expansión de variables como $< y $@. Por otro lado, make -d build reveló el razonamiento de make: analizó las marcas de tiempo, vio que el objetivo out/hello.txt no existía o era más antiguo que src/hello.py, y por eso decidió que "Debe rehacerse".
+
+### Analisis de make tools en un entorno BSD tar en PATH
+
+Al simular un entorno con BSD tar, la verificación make tools falló correctamente, demostrando la importancia de la dependencia de GNU tar. Las opciones --sort=name, --numeric-owner y --mtime son imprescindibles para la reproducibilidad determinista, ya que eliminan metadatos variables como el orden de los archivos, los nombres de usuario/grupo y las fechas de modificación. 
+
+### Análisis make verify-repro
+
+La salida es esta:
+
+```bash
+SHA256_1=9094ca603d4b10a7ecd1673a1ead91c6e6d32adbaa79b0a264f373a0db1f6d3f
+SHA256_2=9094ca603d4b10a7ecd1673a1ead91c6e6d32adbaa79b0a264f373a0db1f6d3f
+OK: reproducible
+```
+Esto confirma que el pipeline de build es reproduible.
+
+La ejecución de PYTHON=python3.12 make test demuestra cómo el pipeline puede adaptarse a diferentes versiones de herramientas. En el Makefile la asignación PYTHON ?= python3 es condicional. Como la variable PYTHON ya fue definida en el entorno (python3.12) al ejecutar el comando.
+
+El objetivo make test ejecuta las pruebas en secuencia: primero scripts/run_tests.sh y, solo si este tiene éxito, python -m unittest. Si el primer script falla, la receta se detiene inmediatamente gracias al modo estricto del shell. 
+
+Al ejecutar touch src/hello.py, su marca de tiempo se actualiza. Cuando se invoca make all, como src/hello.py es más reciente que out/hello.txt, el objetivo build se rehace. A su vez, como out/hello.txt es una dependencia de package, este también se reconstruye. El objetivo test también se ejecuta porque depende directamente de la fuente. 
+
+El comando make -j4 all instruye a make para ejecutar hasta 4 trabajos en paralelo. Se evitan condiciones de carrera gracias a dos factores: dependencias precisas y recetas seguras, como el uso de mkdir -p $(@D), que crea un directorio sin fallar si ya existe. 
+
+make lint ejecuta shellcheck, shfmt -d y ruff para analizar el código y reportar errores o inconsistencias sin modificar los archivos. Por otro lado, make format es un corrector automático que usa herramientas como shfmt -w para reescribir los archivos y ajustarlos al estilo definido en el proyecto.
+
+---
+
+## Parte 3 EXTENDER
+
+### 3.1 lint mejorado
+
+ Al romper intencionadamente el _quoting_ de una variable en `run_tests.sh`, `make lint` falló inmediatamente, con `shellcheck` reportando el error esperado (SC2086). Tras corregirlo, el `lint` pasó correctamente. `make format` aplicó el estilo de código estándar.
+
+ ### 3.2 Rollback adicional
+
+Se modificó el script para simular la desaparición de un archivo temporal a mitad de ejecución. El script detectó la anomalía, mostró un mensaje de error claro y terminó con un código de salida específico (`3`).
+
+### 3.3 Incrementalidad
+
+Las mediciones con `make benchmark` confirmaron el comportamiento esperado. La primera ejecución fue lenta (compilación completa), la segunda fue instantánea (todo estaba cacheado) y la tercera, tras `touch src/hello.py`, volvió a ser lenta porque `make` detectó el cambio y reconstruyó todos los objetivos dependientes (`build`, `test`, `package`).
