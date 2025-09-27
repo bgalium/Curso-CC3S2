@@ -1,0 +1,28 @@
+68b11d1 Guarda cambios antes de rebase
+16a991a Revert "Resuelve el conflicto de fusión entre la versión main y feature/advanced-feature"
+b992a17 Resuelve el conflicto de fusión entre la versión main y feature/advanced-feature
+e27ce0c Actualizar el mensaje main.py en la rama main
+7181b34 Agrega la funcion greet como función avanzada
+ffd963f Agrega main.py
+931a47f Configura la documentación base del repositorio
+7b885e7 Commit Inicial con README.md
+e3bd11f Parte inicial hasta el git status
+91457e4 Finalizada Actividad 5 README
+1d0ef8c Finalizada Actividad 5
+c71940c Terminada parte 1
+5995576 Avance parte 1 antes de script run_test.sh
+e09411b Terminada Actividad 4
+9a401ca Finalizado parte teórica Actividad 3
+3860cf2 Agregando Actividad 3 parte teórica
+1a194b7 Avance de actividad 2 hasta inspeccion con curl
+d0acaa0 Día 3-Evidencia, diagramas y entrega final
+036963e Corregido imagenes 2
+ff03f7e Corregido imagenes
+bed73f8 Realizado 4.6
+10041c7 Realizado 4.5
+431e940 Ordenando Sintaxis
+5ba5915 Agregando 4.2 Silos
+22513f6 Agregando 4.1 Devops vs Cascada
+4cc8ef8  estructura correcta
+8ac66b4 Agregando .gitkeep imagenes
+65f9176 Estructura correcta Actividad1-CC3S2

@@ -1,0 +1,2 @@
+  feature/cherry-pick ddf48c9 Aplica cambios recuperados del stash
+* master              68b11d1 [origin/master] Guarda cambios antes de rebase
