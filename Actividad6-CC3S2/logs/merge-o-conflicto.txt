@@ -1,0 +1,9 @@
+Auto-merging Actividad6-CC3S2/main.py
+CONFLICT (content): Merge conflict in Actividad6-CC3S2/main.py
+Automatic merge failed; fix conflicts and then commit the result.
+
+--- RESOLUCIÓN DEL CONFLICTO ---
+1. Se produjo un conflicto de fusión en 'main.py'.
+2. Se editó el archivo manualmente para combinar ambos cambios: se mantuvo el print() de la rama main y se añadió la función greet() de la rama feature.
+3. Se marcó el conflicto como resuelto con 'git add main.py'.
+4. Se completó la fusión con 'git commit'.
