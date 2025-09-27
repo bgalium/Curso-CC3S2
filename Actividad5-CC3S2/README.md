@@ -90,4 +90,5 @@ Se modificó el script para simular la desaparición de un archivo temporal a mi
 
 ### 3.3 Incrementalidad
 
-Las mediciones con `make benchmark` confirmaron el comportamiento esperado. La primera ejecución fue lenta (compilación completa), la segunda fue instantánea (todo estaba cacheado) y la tercera, tras `touch src/hello.py`, volvió a ser lenta porque `make` detectó el cambio y reconstruyó todos los objetivos dependientes (`build`, `test`, `package`).
+La primera ejecución fue lenta, la segunda fue instantánea  y la tercera, tras `touch src/hello.py`, volvió a ser lenta porque `make` detectó el cambio y reconstruyó todos los objetivos dependientes.
+
