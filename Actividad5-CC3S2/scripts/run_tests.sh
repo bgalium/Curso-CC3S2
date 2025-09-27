@@ -41,7 +41,7 @@ check_deps() {
 run_tests() {
 	local script="$1"
 	local output
-	output="$("$PY" "$script")"
+	("$PY" "$script")
 	if ! echo "$output" | grep -Fq "Hello, World!"; then
 		echo "Test falló: salida inesperada" >&2
 		mv -- "$script" "${script}.bak" || true
